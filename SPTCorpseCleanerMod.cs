@@ -29,7 +29,6 @@ namespace SPTCorpseCleaner {
             KeyCode keyCode = this.ShortcutKey?.Value ?? KeyCode.Backslash;
             if(!Input.GetKeyUp(keyCode)){return;}
             if(this.IsBusy){return;}
-            //this.DeleteCorpse();
             ThreadingHelper.Instance.StartSyncInvoke(this.DeleteCorpse);
         }
 
@@ -43,17 +42,20 @@ namespace SPTCorpseCleaner {
             if(gameWorld==null){return;}
             InteractableObject? interactableObject = gameWorld.MainPlayer?.InteractableObject;
             if(interactableObject==null){
+                NotificationManagerClass.DisplayMessageNotification("no target");
                 this.IsBusy = false;
                 this.Logger.LogWarning("no target");
                 return;
             }
             if(!interactableObject.isActiveAndEnabled){
+                NotificationManagerClass.DisplayMessageNotification("target invalid");
                 this.IsBusy = false;
                 this.Logger.LogWarning("target invalid");
                 return;
             }
             Corpse? corpse = interactableObject.GetComponent<Corpse>();
             if(corpse==null){
+                NotificationManagerClass.DisplayMessageNotification("target is not a corpse");
                 this.IsBusy = false;
                 this.Logger.LogWarning("target is not a corpse");
                 return;
@@ -64,7 +66,9 @@ namespace SPTCorpseCleaner {
             corpse.gameObject.SetActive(false);
             corpse.gameObject.DestroyAllChildren();
             gameWorld.DestroyLoot(corpse);// Corpse is essentially the IKillableLootItem, pop it for Radar and DynamicMaps
-            this.Logger.LogInfo(String.Concat("corpse \"",interactableObject.name,"\" has been deleted"));
+            String str4 = String.Concat("corpse \"",interactableObject.name,"\" has been deleted");
+            NotificationManagerClass.DisplayMessageNotification(str4);
+            this.Logger.LogInfo(str4);
         }
     }
 }
