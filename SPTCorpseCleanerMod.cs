@@ -5,6 +5,7 @@ using CommonAssets.Scripts.Game;
 using EFT;
 using EFT.Interactive;
 using System;
+using System.Linq;
 using System.Numerics;
 using UnityEngine;
 using static CommonAssets.Scripts.Game.EndByExitTrigerScenario;
@@ -49,18 +50,15 @@ namespace SPTCorpseCleaner {
         private void DeleteCorpse () {
             this.IsBusy = true;
             GameWorld? gameWorld = Singleton<GameWorld>.Instance;
-            if(gameWorld==null){return;}
-            InteractableObject? interactableObject = gameWorld.MainPlayer?.InteractableObject;
-            if(interactableObject==null){
-                NotificationManagerClass.DisplayMessageNotification("no target");
+            if(gameWorld==null){
                 this.IsBusy = false;
-                this.Logger.LogWarning("no target");
                 return;
             }
-            if(!interactableObject.isActiveAndEnabled){
-                NotificationManagerClass.DisplayMessageNotification("target invalid");
+            InteractableObject? interactableObject = gameWorld.MainPlayer?.InteractableObject;
+            if(interactableObject==null || !interactableObject.isActiveAndEnabled){
+                NotificationManagerClass.DisplayMessageNotification("no target or target invalid");
                 this.IsBusy = false;
-                this.Logger.LogWarning("target invalid");
+                this.Logger.LogWarning("no target or target invalid");
                 return;
             }
             Corpse? corpse = interactableObject.GetComponent<Corpse>();
@@ -91,10 +89,18 @@ namespace SPTCorpseCleaner {
             // copy from "BufferInnerZone.cs"
             if(!(Singleton<AbstractGame>.Instance is GInterface122 ginterface)){
                 this.IsBusy = false;
+                this.Logger.LogInfo("AbstractGame instance invalid");
+                return;
+            }            
+            ExfiltrationPoint? exfiltrationPoint = gameWorld.ExfiltrationController.ExfiltrationPoints.FirstOrDefault(x=>x.isActiveAndEnabled && !x.HasRequirements);
+            if(exfiltrationPoint==null){
+                this.IsBusy = false;
+                NotificationManagerClass.DisplayMessageNotification("not found any available exfil point");
+                this.Logger.LogInfo("not found any available exfil point");
                 return;
             }
             this.IsBusy = false;
-            ginterface.StopSession(gameWorld.MainPlayer.ProfileId, ExitStatus.Survived,String.Empty);
+            ginterface.StopSession(gameWorld.MainPlayer.ProfileId, ExitStatus.Survived,exfiltrationPoint.name);
             NotificationManagerClass.DisplayMessageNotification("exfil at now");
             this.Logger.LogInfo("exfil at now");
         }
