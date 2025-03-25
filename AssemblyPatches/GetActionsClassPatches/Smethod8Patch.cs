@@ -23,9 +23,7 @@ namespace SPTCorpseCleaner.AssemblyPatches.GetActionsClassPatches {
             //String? playerId = Singleton<GameWorld>.Instance?.MainPlayer?.AccountId;
             //Console.WriteLine("^ playerId: {0}",playerId);
             //if (owner.Player.AccountId != playerId) { return; }
-            Console.WriteLine("^^ lootItemName: {0}",lootItemName.ToLowerInvariant());
             if(lootItemName.ToLowerInvariant()!="corpse"){return;}
-            Console.WriteLine("^^^^ rootItem.Name: {0}, rootItem.TemplateId: {1}",rootItem.Name,rootItem.TemplateId);   
             if(rootItem.TemplateId!="55d7217a4bdc2d86028b456d"){return;}// this id means "默认物品栏"
             if(__result.Actions.FindIndex(x=>x.Name.ToLowerInvariant()=="search")<0){return;}
             __result.Actions.Add(new ActionsTypesClass(){
