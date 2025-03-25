@@ -1,13 +1,8 @@
 ### usage
-focus on the target corpse, press <kbd>CTRL</kbd> and <kbd>\\</kbd> when the **Search** interact indicator shown
-
-can change shortcut key via <kbd>F12</kbd> bepinex configuretion panel but can not change <kbd>CTRL</kbd> modifier key
+focus on the target corpse, follow the interact indicator
 
 ### compatibility
-- works on SPT@3.10.*
-- should be works on SPT@3.9.*, no tested
-- works on SPT@3.8.3
-- works fine with **DynamicMaps** and **TyrianRadar**
+check release note for SPT version, works fine with **DynamicMaps** and **TyrianRadar**, but **DynamicMaps** may still shown deleted corpse
 
 ### preview
 |before|after|
