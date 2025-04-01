@@ -13,28 +13,31 @@ namespace SPTCorpseCleaner {
 
         private AssemblyPatches__GetActionsClass.Smethod9Patch? Smethod9Patche{get;set;} = null;
 
-        public ConfigEntry<Boolean>? Debug{get;private set;} = null;
+        private AssemblyPatches_EFT__Interactive__Corpse.AwakePatch? AwakePatch{get;set;} = null;
+
+        public static ConfigEntry<Boolean>? Debug{get;private set;} = null;
 
         protected void Awake () {
-            this.Debug = this.Config.Bind<Boolean>("config","debug",false,"don't touch this");
+            SPTCorpseCleanerPlugin.Debug = this.Config.Bind<Boolean>("config","debug",false,"don't touch this");
             //this.Smethod8Patche = new AssemblyPatches__GetActionsClass.Smethod8Patch();
             this.Smethod9Patche = new AssemblyPatches__GetActionsClass.Smethod9Patch();
+            this.AwakePatch = new AssemblyPatches_EFT__Interactive__Corpse.AwakePatch();
             this.Logger.LogDebug("plugin loaded");
         }
 
         protected void Start () {
             this.Smethod9Patche?.Enable();
+            this.AwakePatch?.Enable();
             this.Logger.LogDebug("plugin actived");
         }
 
         protected void Update () {
-            if (this.Debug?.Value == true) {
-                this.Logger.LogDebug(String.Concat("target: ",Singleton<GameWorld>.Instance?.MainPlayer?.InteractableObject?.name));
-            }
+            //
         }
 
         protected void OnDestroy() {
             this.Smethod9Patche?.Disable();
+            this.AwakePatch?.Disable();
             this.Logger.LogDebug("plugin deactived");
         }
     }
