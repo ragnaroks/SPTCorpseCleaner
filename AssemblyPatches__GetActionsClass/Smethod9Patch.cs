@@ -37,10 +37,11 @@ namespace SPTCorpseCleaner.AssemblyPatches__GetActionsClass {
                 NotificationManagerClass.DisplayMessageNotification("target is not a corpse");
                 return;
             }
+            corpse.Kill();
             corpse.gameObject.SetActive(false);
             corpse.gameObject.DestroyAllChildren();
             gameWorld.DestroyLoot(corpse);// Corpse is essentially the IKillableLootItem, pop it for Radar and DynamicMaps
-            NotificationManagerClass.DisplayMessageNotification(String.Concat("corpse \"", interactableObject.name, "\" has been deleted"));
+            NotificationManagerClass.DisplayMessageNotification(String.Concat("corpse <", interactableObject.name, "> has been deleted"));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SPTCorpseCleaner {
     [BepInPlugin("net.skydust.SPTCorpseCleanerPlugin", "SPTCorpseCleanerPlugin", "1.0.3")]
     [BepInProcess("EscapeFromTarkov")]
     public class SPTCorpseCleanerPlugin : BaseUnityPlugin {
-        private AssemblyPatches__GetActionsClass.Smethod8Patch? Smethod8Patche{get;set;} = null;
+        //private AssemblyPatches__GetActionsClass.Smethod8Patch? Smethod8Patche{get;set;} = null;
 
         private AssemblyPatches__GetActionsClass.Smethod9Patch? Smethod9Patche{get;set;} = null;
 
@@ -26,6 +26,7 @@ namespace SPTCorpseCleaner {
         }
 
         protected void Start () {
+            //this.Smethod8Patche?.Enable();
             this.Smethod9Patche?.Enable();
             this.AwakePatch?.Enable();
             this.Logger.LogDebug("plugin actived");
@@ -36,6 +37,7 @@ namespace SPTCorpseCleaner {
         }
 
         protected void OnDestroy() {
+            //this.Smethod8Patche?.Disable();
             this.Smethod9Patche?.Disable();
             this.AwakePatch?.Disable();
             this.Logger.LogDebug("plugin deactived");
