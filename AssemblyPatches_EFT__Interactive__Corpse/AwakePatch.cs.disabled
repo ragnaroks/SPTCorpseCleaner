@@ -10,8 +10,7 @@ namespace SPTCorpseCleaner.AssemblyPatches_EFT__Interactive__Corpse {
 
         [PatchPostfix]
         public static void Postfix (ref EFT.Interactive.Corpse __instance) {
-            //_ = __instance.GetOrAddComponent<CorpseNameLabelComponent>();
-            _ = __instance.gameObject.AddComponent<CorpseNameLabelComponent>();
+            _ = __instance.gameObject.GetOrAddComponent<CorpseNameLabelComponent>();
         }
     }
 }
