@@ -3,7 +3,7 @@ using BepInEx.Configuration;
 using System;
 
 namespace SPTCorpseCleaner {
-    [BepInPlugin("net.skydust.SPTCorpseCleanerPlugin", "SPTCorpseCleanerPlugin", "1.0.3")]
+    [BepInPlugin("net.skydust.SPTCorpseCleanerPlugin", "SPTCorpseCleanerPlugin", "1.0.5")]
     [BepInProcess("EscapeFromTarkov")]
     public class SPTCorpseCleanerPlugin : BaseUnityPlugin {
         private AssemblyPatches__GetActionsClass.Smethod8Patch? Smethod8Patche{get;set;} = null;
