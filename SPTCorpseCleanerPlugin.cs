@@ -1,27 +1,27 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.Configuration;
 using System;
 
 namespace SPTCorpseCleaner {
-    [BepInPlugin("net.skydust.SPTCorpseCleanerPlugin", "SPTCorpseCleanerPlugin", "1.0.5")]
+    [BepInPlugin("net.skydust.SPTCorpseCleanerPlugin", "SPTCorpseCleanerPlugin", "1.0.6")]
     [BepInProcess("EscapeFromTarkov")]
     public class SPTCorpseCleanerPlugin : BaseUnityPlugin {
-        private AssemblyPatches__GetActionsClass.Smethod8Patch? Smethod8Patche{get;set;} = null;
+        private AssemblyPatches__GetActionsClass.GetAvailableActionsPatch? GetAvailableActionsPatche { get;set;} = null;
 
-        private AssemblyPatches__GetActionsClass.Smethod9Patch? Smethod9Patche{get;set;} = null;
+        private AssemblyPatches__GetActionsClass.GetAvailableInteractionStatePatch? GetAvailableInteractionStatePatche { get;set;} = null;
 
         public static ConfigEntry<Boolean>? Debug{get;private set;} = null;
 
         protected void Awake () {
             SPTCorpseCleanerPlugin.Debug = this.Config.Bind<Boolean>("config","debug",false,"don't touch this");
-            this.Smethod8Patche = new AssemblyPatches__GetActionsClass.Smethod8Patch();
-            this.Smethod9Patche = new AssemblyPatches__GetActionsClass.Smethod9Patch();
+            this.GetAvailableActionsPatche = new AssemblyPatches__GetActionsClass.GetAvailableActionsPatch();
+            this.GetAvailableInteractionStatePatche = new AssemblyPatches__GetActionsClass.GetAvailableInteractionStatePatch();
             this.Logger.LogDebug("plugin loaded");
         }
 
         protected void Start () {
-            this.Smethod8Patche?.Enable();
-            this.Smethod9Patche?.Enable();
+            this.GetAvailableActionsPatche?.Enable();
+            this.GetAvailableInteractionStatePatche?.Enable();
             this.Logger.LogDebug("plugin actived");
         }
 
@@ -30,8 +30,8 @@ namespace SPTCorpseCleaner {
         }
 
         protected void OnDestroy() {
-            this.Smethod8Patche?.Disable();
-            this.Smethod9Patche?.Disable();
+            this.GetAvailableActionsPatche?.Disable();
+            this.GetAvailableInteractionStatePatche?.Disable();
             this.Logger.LogDebug("plugin deactived");
         }
     }
