@@ -12,7 +12,7 @@ using System.Reflection;
 namespace SPTCorpseCleaner.AssemblyPatches__GetActionsClass {
     public class GetAvailableInteractionStatePatch : ModulePatch {
         protected override MethodBase GetTargetMethod () {
-            return AccessTools.Method(typeof(InteractionContextHelper), nameof(InteractionContextHelper.GetAvailableInteractionState), new System.Type[] { typeof(GamePlayerOwner), typeof(LootItem), typeof(ItemController), typeof(string), typeof(string), typeof(IPlayer) });
+            return AccessTools.Method(typeof(InteractionContextHelper), nameof(InteractionContextHelper.GetAvailableInteractionState), new System.Type[] { typeof(GamePlayerOwner), typeof(Item), typeof(ItemController), typeof(string), typeof(string), typeof(IPlayer) });
         }
 
         [PatchPostfix]
