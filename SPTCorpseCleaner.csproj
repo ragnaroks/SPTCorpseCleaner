@@ -1,40 +1,44 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-    <Version>1.0.5</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Version>1.0.6</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>E:\EscapeFromTarkov@4.0\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>E:\EscapeFromTarkov@4.0\BepInEx\core\BepInEx.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Comfort">
-      <HintPath>E:\EscapeFromTarkov@4.0\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Comfort.Unity">
-      <HintPath>E:\EscapeFromTarkov@4.0\EscapeFromTarkov_Data\Managed\Comfort.Unity.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="spt-reflection">
-      <HintPath>E:\EscapeFromTarkov@4.0\BepInEx\plugins\spt\spt-reflection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>E:\EscapeFromTarkov@4.0\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>E:\EscapeFromTarkov@4.0\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>..\References-4.1\0Harmony.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>..\References-4.1\Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="BepInEx">
+			<HintPath>..\References-4.1\BepInEx.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Comfort">
+			<HintPath>..\References-4.1\Comfort.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Comfort.Unity">
+			<HintPath>..\References-4.1\Comfort.Unity.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="spt-reflection">
+			<HintPath>..\References-4.1\spt-reflection.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>..\References-4.1\UnityEngine.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>..\References-4.1\UnityEngine.CoreModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
 
 </Project>
